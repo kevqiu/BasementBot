@@ -1,6 +1,7 @@
+var config = require('./config.json');
 var Discord = require('discord.js');
 var client = new Discord.Client();
-var token = '';
+var token = config.discord.token;
 
 var toEmojiCommand = /!toEmoji/;
 var redAModifier = /-a/;

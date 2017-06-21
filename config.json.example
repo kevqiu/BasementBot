@@ -1,0 +1,5 @@
+{
+  "discord": {
+    "token": "your token from discord api page"
+  }
+}
