@@ -1,0 +1,24 @@
+{
+  "name": "texttoemojibot",
+  "version": "1.0.0",
+  "description": "Discord chat bot that converts text into emojis.",
+  "main": "discord_bot.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "discord.js": "^11.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevqiu/TextToEmojiBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevqiu/TextToEmojiBot/issues"
+  },
+  "homepage": "https://github.com/kevqiu/TextToEmojiBot#readme"
+}
