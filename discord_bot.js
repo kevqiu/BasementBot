@@ -1,6 +1,6 @@
 var Discord = require('discord.js');
 var client = new Discord.Client();
-var token = 'MzI2OTIzNTk2MzU2MTI0Njcz.DCt21g.1yxpytZ4PUoyo6LdGjz5MNgCvgs';
+var token = '';
 
 var toEmojiCommand = /!toEmoji/;
 var redAModifier = /-a/;
