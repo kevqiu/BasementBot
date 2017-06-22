@@ -2,7 +2,7 @@
 const config = require('./config.json');
 const fs = require('fs');
 const Discord = require('discord.js');
-var colors = require('colors');
+const colors = require('colors');
 
 // constants
 const toEmojiCommand = '!emoji';
@@ -185,4 +185,9 @@ function emojifyMessage(msgObj) {
     emojifiedMessage += msgObj.spaceSplitString;
   }
   return emojifiedMessage;
+}
+
+if (typeof exports !== 'undefined') {
+   exports.parseMessage = parseMessage;
+   exports.emojifyMessage = emojifyMessage;
 }
