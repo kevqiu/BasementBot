@@ -2,7 +2,7 @@
 const config = require('./config.json');
 const fs = require('fs');
 const Discord = require('discord.js');
-var colors = require('colors');
+const colors = require('colors');
 
 // constants
 const toEmojiCommand = '!emoji';
@@ -37,6 +37,9 @@ client.on('ready', () => {
 
 // bot message lisener
 client.on('message', msg => {
+  if (client.user.username === msg.author.username) { // don't respond to own messages
+    return;
+  }
   if (msg.content.split(' ')[0] == toEmojiCommand) { // !emoji request
     toEmoji(msg);
   }
@@ -185,4 +188,9 @@ function emojifyMessage(msgObj) {
     emojifiedMessage += msgObj.spaceSplitString;
   }
   return emojifiedMessage;
+}
+
+if (typeof exports !== 'undefined') {
+   exports.parseMessage = parseMessage;
+   exports.emojifyMessage = emojifyMessage;
 }
