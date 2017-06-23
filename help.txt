@@ -1,5 +1,5 @@
 ```diff
-!emoji
+!emoji <modifiers> <message>
   Turns your text into emojis
   Modifiers:
     • -a : uses red A instead of blue A

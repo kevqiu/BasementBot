@@ -37,6 +37,9 @@ client.on('ready', () => {
 
 // bot message lisener
 client.on('message', msg => {
+  if (client.user.username === msg.author.username) { // don't respond to own messages
+    return;
+  }
   if (msg.content.split(' ')[0] == toEmojiCommand) { // !emoji request
     toEmoji(msg);
   }

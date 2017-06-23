@@ -1,8 +1,8 @@
 {
-  "name": "texttoemojibot",
+  "name": "TextToEmojiBot",
   "version": "1.0.0",
   "description": "Discord chat bot that converts text into emojis.",
-  "main": "discord_bot.js",
+  "main": "textToEmojiBot.js",
   "dependencies": {
     "colors": "^1.1.2",
     "discord.js": "^11.1.0"
@@ -11,6 +11,7 @@
     "mocha": "^3.4.2"
   },
   "scripts": {
+    "start": "node textToEmojiBot.js",
     "test": "mocha"
   },
   "repository": {

@@ -1,7 +1,7 @@
 const assert = require('assert');
-const bot = require('../discord_bot.js');
+const bot = require('../textToEmojiBot.js');
+const helper = require('./testHelper.js');
 const config = require('../config.json');
-
 var defaultSpaceSplit = config.message.spaceSplit;
 var defaultCharSplit = config.message.charSplit;
 
@@ -103,16 +103,25 @@ describe('parseMessage(msg)', function() {
 describe('emojifyMessage(msg)', function() {
   it('should turn the message into the correct emojied form', function() {
     // arrange
-    var req = getTestMessage();
+    var req = helper.getTestMessage();
     // act
     var emojifiedMessage = bot.emojifyMessage(req);
     // assert
     assert.equal(emojifiedMessage, ':regional_indicator_a::regional_indicator_b::regional_indicator_c:' + defaultSpaceSplit + ':one::two::three:');
   });
 
+  it('should turn a message with exclamation and question marks into the correct emojied form', function() {
+    // arrange
+    var req = helper.getTestMessage('wow?!');
+    // act
+    var emojifiedMessage = bot.emojifyMessage(req);
+    // assert
+    assert.equal(emojifiedMessage, ':regional_indicator_w::regional_indicator_o::regional_indicator_w::question::exclamation:');
+  });
+
   it('should turn the message with -a modifier into the correct emojied form', function() {
     // arrange
-    var req = getTestMessage();
+    var req = helper.getTestMessage();
     req.redAFlag = true;
     // act
     var emojifiedMessage = bot.emojifyMessage(req);
@@ -122,21 +131,31 @@ describe('emojifyMessage(msg)', function() {
 
   it('should turn the message with -b modifier into the correct emojied form', function() {
     // arrange
-    var req = getTestMessage();
+    var req = helper.getTestMessage();
     req.redBFlag = true;
     // act
     var emojifiedMessage = bot.emojifyMessage(req);
     // assert
     assert.equal(emojifiedMessage, ':regional_indicator_a::b::regional_indicator_c:' + defaultSpaceSplit + ':one::two::three:');
   });
-});
 
-function getTestMessage() {
-  return {
-    message: 'abc 123',
-    redAFlag: config.message.redAFlag,
-    redBFlag: config.message.redBFlag,
-    spaceSplitString: defaultSpaceSplit,
-    charSplitString: defaultCharSplit
-  };
-}
+  it('should turn the message with -s modifier into the correct emojied form', function() {
+    // arrange
+    var req = helper.getTestMessage();
+    req.spaceSplitString = 'spaceDelim';
+    // act
+    var emojifiedMessage = bot.emojifyMessage(req);
+    // assert
+    assert.equal(emojifiedMessage, 'spaceDelim:regional_indicator_a::regional_indicator_b::regional_indicator_c:spaceDelim:one::two::three:spaceDelim');
+  });
+
+  it('should turn the message with -c modifier into the correct emojied form', function() {
+    // arrange
+    var req = helper.getTestMessage();
+    req.charSplitString = 'charDelim';
+    // act
+    var emojifiedMessage = bot.emojifyMessage(req);
+    // assert
+    assert.equal(emojifiedMessage, ':regional_indicator_a:charDelim:regional_indicator_b:charDelim:regional_indicator_c:' + defaultSpaceSplit + ':one:charDelim:two:charDelim:three:');
+  });
+});

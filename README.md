@@ -3,6 +3,21 @@ Discord chat bot that converts text into emojis.
 
 Built on top of [discord.js](https://discord.js.org).
 
+## Commands
+```diff
+!emoji <modifiers> <message>
+  Turns your text into emojis
+  Modifiers:
+    • -a : uses red A instead of blue A
+    • -b : uses red B instead of blue B
+    • -s <string> : puts <string> between each word
+    • -c <string> : puts <string> between each character
+  Example:
+    !emoji -a -s :thinking: can the mods ban us all
+!help
+  Displays help text (this thing)
+```
+
 ## Setup
 Requirements - Node.js (version 6+)
 
