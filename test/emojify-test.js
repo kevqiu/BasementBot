@@ -1,5 +1,5 @@
 const assert = require('assert');
-const bot = require('../textToEmojiBot.js');
+const bot = require('../src/emojify.js');
 const helper = require('./testHelper.js');
 const config = require('../config.json');
 var defaultSpaceSplit = config.message.spaceSplit;

@@ -3,10 +3,13 @@
     "token": "your token from discord api page",
     "helpTimer": "10000"
   },
-  "message": {
+  "emoji": {
     "redA": false,
     "redB": false,
     "spaceSplit": "  ",
     "charSplit": ""
+  },
+  "purge": {
+    "limit": 5
   }
 }

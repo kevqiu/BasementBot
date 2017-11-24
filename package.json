@@ -1,8 +1,8 @@
 {
-  "name": "TextToEmojiBot",
+  "name": "BasementBot",
   "version": "1.0.0",
   "description": "Discord chat bot that converts text into emojis.",
-  "main": "textToEmojiBot.js",
+  "main": "BasementBot.js",
   "dependencies": {
     "colors": "^1.1.2",
     "discord.js": "^11.1.0"
@@ -11,17 +11,17 @@
     "mocha": "^3.4.2"
   },
   "scripts": {
-    "start": "node textToEmojiBot.js",
+    "start": "node BasementBot.js",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevqiu/TextToEmojiBot.git"
+    "url": "git+https://github.com/kevqiu/BasementBot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kevqiu/TextToEmojiBot/issues"
+    "url": "https://github.com/kevqiu/BasementBot/issues"
   },
-  "homepage": "https://github.com/kevqiu/TextToEmojiBot#readme"
+  "homepage": "https://github.com/kevqiu/BasementBot#readme"
 }

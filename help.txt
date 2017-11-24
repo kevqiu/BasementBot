@@ -8,6 +8,10 @@
     • -c <string> : puts <string> between each character
   Example:
     !emoji -a -s :thinking: can the mods ban us all
+!purge <number>
+  Delete messages up to the requested number
+  Default value: 1
+  Limit: 5
 !help
   Displays help text (this thing)
 ```
