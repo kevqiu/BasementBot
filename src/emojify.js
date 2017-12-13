@@ -15,13 +15,13 @@ const numberMap = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'
  * charSplitFlag: string used to split characters in message
 */
 function parseMessage(msg) {
-    var msgArray = msg.toString().split(' '); // split message to be parsed
-    var redAIndex = msgArray.indexOf(redAModifier);
-    var redBIndex = msgArray.indexOf(redBModifier);
-    var spaceModifierIndex = msgArray.indexOf(spaceSplitModifier);
-    var charModifierIndex = msgArray.indexOf(charSplitModifier);
+    let msgArray = msg.toString().split(' '); // split message to be parsed
+    let redAIndex = msgArray.indexOf(redAModifier);
+    let redBIndex = msgArray.indexOf(redBModifier);
+    let spaceModifierIndex = msgArray.indexOf(spaceSplitModifier);
+    let charModifierIndex = msgArray.indexOf(charSplitModifier);
 
-    var request = { // get defaults from config
+    let request = { // get defaults from config
         message: '',
         redAFlag: config.redAFlag,
         redBFlag: config.redBFlag,
@@ -43,9 +43,9 @@ function parseMessage(msg) {
     }
 
     // finds where message begins by determining where the last modifier lives
-    var messageStart;
-    var maxSingleModifierIndex = Math.max(redAIndex, redBIndex);
-    var maxArgumentedModifierIndex = Math.max(spaceModifierIndex, charModifierIndex)
+    let messageStart;
+    let maxSingleModifierIndex = Math.max(redAIndex, redBIndex);
+    let maxArgumentedModifierIndex = Math.max(spaceModifierIndex, charModifierIndex)
     if (maxArgumentedModifierIndex > maxSingleModifierIndex) { // last argument was -space <string> or -char <string>
         messageStart = maxArgumentedModifierIndex + 2;
     }
@@ -65,15 +65,15 @@ function parseMessage(msg) {
 * takes flags from parseMessage and handles special cases such as :a: and :b:
 */
 function emojifyMessage(msgObj) {
-    var emojifiedMessage = '';
+    let emojifiedMessage = '';
 
     if (!/\s/.test(msgObj.spaceSplitString)) { // append spaceString at the beginning of message
         emojifiedMessage += msgObj.spaceSplitString;
     }
 
-    var message = msgObj.message.toLowerCase().split('');
-    for (var i = 0; i < message.length; i++) {
-        var char = message[i];
+    let message = msgObj.message.toLowerCase().split('');
+    for (let i = 0; i < message.length; i++) {
+        let char = message[i];
         if (/\s/.test(char)) { // white space
             emojifiedMessage += msgObj.spaceSplitString;
         }

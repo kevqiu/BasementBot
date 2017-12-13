@@ -14,6 +14,12 @@ Built on top of [discord.js](https://discord.js.org).
     • -c <string> : puts <string> between each character
   Example:
     !emoji -a -s :thinking: can the mods ban us all
+!purge <number>
+  Delete messages up to the requested number
+  Default value: 1
+  Limit: 5
+!avatar
+  Replies with your avatar
 !help
   Displays help text (this thing)
 ```
@@ -27,8 +33,8 @@ Requirements - Node.js (version 6+)
 4. Get Bot Token and add it to `config.json` (remove `.example` from file name)
 5. Add bot to server with the following URL:
 `https://discordapp.com/api/oauth2/authorize?client_id=<bot_client_id>&scope=bot`
-6. Run the bot with `node discord_bot.js`
+6. Run the bot with `node BasementBot.js`
 
 ## Notes
 * Give `Manage Messages` text permissions to allow it to delete the command calls.
-* Default values are found in the `config.json` under `message`
+* Default values are found in the `config.json`

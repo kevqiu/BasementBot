@@ -11,10 +11,16 @@ const purge = require('./src/purge.js');
 // constants
 const toEmojiCommand = '!emoji';
 const purgeCommand = '!purge';
+const avatarCommand = '!avatar';
 const helpCommand = '!help';
 
-var helpText;
-var helpLock = false;
+// server tings
+let mainChannel;
+let helpText;
+
+// locks
+let helpLock = false; 
+let wednesdayLock = false;
 
 //====================
 // DISCORD BOT CLIENT
@@ -33,7 +39,12 @@ client.on('ready', () => {
         helpText = data.toString();
         console.log('Help text loaded!');
     });
+    // save channel defined in config
+    mainChannel = client.channels.find(ch => {return ch.name == config.discord.mainChannel;});
 });
+
+// loop every minute to check if it's Wednesday my dudes
+setInterval(() => wednesday(), 1000);
 
 // bot message lisener
 client.on('message', msg => {
@@ -43,8 +54,11 @@ client.on('message', msg => {
     if (msg.content.split(' ')[0] == toEmojiCommand) { // !emoji request
         toEmoji(msg);
     }
-    else if (msg.content.split(' ')[0] == purgeCommand) { // !help request
+    else if (msg.content.split(' ')[0] == purgeCommand) { // !purge request
         purgeMessages(msg);
+    }
+    else if (msg.content.split(' ')[0] == avatarCommand) { // !avatar request
+        avatar(msg);
     }
     else if (msg.content.split(' ')[0] == helpCommand) { // !help request
         help(msg);
@@ -59,9 +73,9 @@ function toEmoji(msg) {
     msg.delete().catch(function (err) {
         console.log('No delete permissions'.red);
     });
-    var request = emojify.parseMessage(msg);
+    let request = emojify.parseMessage(msg);
     if (request.message && request.message.length > 0) {
-        var textChannel = msg.channel;
+        let textChannel = msg.channel;
         console.log(toEmojiCommand + ' request sent from ' + msg.author.username + ': ' + msg)
         textChannel.send(msg.author.username + ':');
         textChannel.send(emojify.emojifyMessage(request));
@@ -70,8 +84,8 @@ function toEmoji(msg) {
 
 // !purge request
 function purgeMessages(msg) {
-    var request = purge.parseMessage(msg);
-    var textChannel = msg.channel;    
+    let request = purge.parseMessage(msg);
+    let textChannel = msg.channel;    
     if (request.amount < 2) {
         msg.delete();
     }
@@ -80,16 +94,40 @@ function purgeMessages(msg) {
     }
 }
 
+// !avatar request
+function avatar(msg) {
+    msg.reply(msg.author.avatarURL);
+}
+
 // !help request
 function help(msg) {
     msg.delete().catch(function (err) {
         console.log('No delete permissions'.red);
     });
-    if(!helpLock) {    // only allows 1 !help call in defined time frame (value in config)
-        helpLock = true; // lock the function
-        var textChannel = msg.channel;
+    // only allows 1 !help call in defined time frame (value in config)
+    if(!helpLock) { 
+        // lock the function
+        helpLock = true; 
+        let textChannel = msg.channel;
         console.log(helpCommand + ' request sent from ' + msg.author.username);
         textChannel.send(helpText);
-        setTimeout(function() {helpLock = false}, config.discord.helpTimer) // unlock after timer is up
+        // unlock after timer is up
+        setTimeout(function() {helpLock = false}, config.discord.helpTimer); 
+    }
+}
+
+// check if it's Wednesday and post the Wednesday frog if it is
+function wednesday() {
+    let day = new Date().getDay();
+    // only allows 1 posting of the Wednesday frog every Wednesday
+    if (day == 3 && !wednesdayLock && mainChannel) {
+        wednesdayLock = true;
+        mainChannel.send('', {
+            file: __dirname + '/resources/wednesday.jpg'
+        });
+    }
+    else if (day != 3) {
+        // once Wednesday is over, prepare for next week
+        wednesdayLock = false;
     }
 }

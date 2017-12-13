@@ -12,6 +12,8 @@
   Delete messages up to the requested number
   Default value: 1
   Limit: 5
+!avatar
+  Replies with your avatar
 !help
   Displays help text (this thing)
 ```

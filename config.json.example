@@ -1,7 +1,8 @@
 {
   "discord": {
     "token": "your token from discord api page",
-    "helpTimer": "10000"
+    "helpTimer": "10000",
+    "mainChannel": "general"
   },
   "emoji": {
     "redA": false,
