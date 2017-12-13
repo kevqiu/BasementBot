@@ -44,7 +44,7 @@ client.on('ready', () => {
 });
 
 // loop every minute to check if it's Wednesday my dudes
-setInterval(() => wednesday(), 1000);
+setInterval(() => wednesday(), 60 * 1000);
 
 // bot message lisener
 client.on('message', msg => {
