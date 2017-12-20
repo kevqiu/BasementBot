@@ -126,7 +126,7 @@ function wednesday() {
             file: __dirname + '/resources/wednesday.jpg'
         });
     }
-    else if (day != 3) {
+    else if (!day.includes('Wed')) {
         // once Wednesday is over, prepare for next week
         wednesdayLock = false;
     }
