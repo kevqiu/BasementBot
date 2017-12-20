@@ -118,9 +118,9 @@ function help(msg) {
 
 // check if it's Wednesday and post the Wednesday frog if it is
 function wednesday() {
-    let day = new Date().getDay();
+    let day = new Date(new Date().getTime() + config.discord.timezoneOffset * 3600 * 1000).toUTCString();
     // only allows 1 posting of the Wednesday frog every Wednesday
-    if (day == 3 && !wednesdayLock && mainChannel) {
+    if (day.includes('Wed') && !wednesdayLock && mainChannel) {
         wednesdayLock = true;
         mainChannel.send('', {
             file: __dirname + '/resources/wednesday.jpg'
