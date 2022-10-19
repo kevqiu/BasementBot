@@ -151,4 +151,6 @@ const geo = (msg) => {
   let textChannel = msg.channel;
   console.log(geoCommand + " request sent from " + msg.author.username);
   textChannel.send("hello !geo");
+
+  const geoToken = config.discord.geoGuessrKey;
 };
